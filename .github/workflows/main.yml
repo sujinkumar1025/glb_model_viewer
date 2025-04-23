@@ -1,53 +1,47 @@
-name: Build and Test App
+name: Build and Test
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     services:
       mongo:
-        image: mongo:latest
+        image: mongo:8
         ports:
           - 27017:27017
         options: >-
-          --health-cmd="mongo --eval 'db.runCommand({ ping: 1 })'" 
-          --health-interval=10s 
-          --health-timeout=5s 
-          --health-retries=5
+          --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'" 
+          --health-interval 10s 
+          --health-timeout 5s 
+          --health-retries 5
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: Install frontend dependencies
-        run: |
-          cd glb_frontend
-          npm install
-
-      - name: Build frontend
-        run: |
-          cd glb_frontend
-          npm run build
 
       - name: Install backend dependencies
         run: |
           cd glb_backend
           npm install
 
-      - name: Start backend (for future testing)
+      - name: Install frontend dependencies
         run: |
-          echo "Backend service can be started and tested here"
+          cd glb_model_viewer
+          npm install
 
-      - name: Done ✅
-        run: echo "Build complete!"
+      - name: Run backend tests (optional)
+        run: |
+          cd glb_backend
+          echo "No tests configured yet"
+
+      - name: Build frontend (optional)
+        run: |
+          cd glb_model_viewer
+          npm run build
