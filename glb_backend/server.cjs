@@ -8,7 +8,7 @@ const Model = require('../src/models/Model.cjs'); // Adjust path if needed
 const app = express();
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://sujinkumar1025: UwT8NRmOXOmHLO2W@cluster0.pxpag2u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb://localhost:27017/glbmodels', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -26,8 +26,8 @@ const storage = multer.diskStorage({
   destination: function (_req, _file, cb) {
     cb(null, 'uploads/');
   },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
+  filename: function (_req, _file, cb) {
+    cb(null, Date.now() + path.extname(_file.originalname));
   }
 });
 const upload = multer({ storage });
