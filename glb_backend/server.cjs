@@ -8,7 +8,7 @@ const Model = require('../src/models/Model.cjs'); // Adjust path if needed
 const app = express();
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/glbmodels', {
+mongoose.connect('mongodb+srv://sujinkumar1025: UwT8NRmOXOmHLO2W@cluster0.pxpag2u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
