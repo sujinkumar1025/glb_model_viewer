@@ -4,14 +4,12 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const Model = require('../src/models/Model.cjs'); // Adjust path if needed
+require('dotenv').config();
 
 const app = express();
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://sujinkumar1025: UwT8NRmOXOmHLO2W@cluster0.pxpag2u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('Failed to connect to MongoDB:', err));
 
