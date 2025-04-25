@@ -4,14 +4,21 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const Model = require('../src/models/Model.cjs'); // Adjust path if needed
-require('dotenv').config();
+// require('dotenv').config();
 
 const app = express();
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(err => console.error('Failed to connect to MongoDB:', err));
+// mongoose.connect("mongodb://localhost:27017/glb_model_viewer", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Connected to MongoDB Atlas'))
+.catch(err => console.error('Connection error:', err));
 
 // Middleware
 app.use(cors());
@@ -63,6 +70,7 @@ app.post('/models', upload.single('model'), (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
+// const PORT = process.env.PORT || 4000 
 
 // Start server
 const PORT = 5000;
