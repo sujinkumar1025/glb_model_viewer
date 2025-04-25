@@ -15,12 +15,13 @@ export default function UploadPage() {
     formData.append('model', file);
     formData.append('name', name);
 
-    const apiUrl = process.env.NODE_ENV === 'production'
-  ? 'https://glb-model-viewer-1.onrender.com/models'  // Replace with the actual deployed backend URL
-  : 'http://localhost:5000/models';  // For local development
+  //   const apiUrl = process.env.NODE_ENV === 'production'
+  // ? 'https://glb-model-viewer-1.onrender.com/models'  // Replace with the actual deployed backend URL
+  // : 'http://localhost:5000/models';  // For local development
+  const apiUrl = process.env.REACT_APP_API_URL;
 
     try {
-      await axios.post(apiUrl, formData, {
+      await axios.post(`${apiUrl}/models`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
