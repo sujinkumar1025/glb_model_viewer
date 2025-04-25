@@ -7,12 +7,14 @@ export default function ViewerPage() {
   const [selectedUrl, setSelectedUrl] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/models')
+    const apiUrl = process.env.REACT_APP_API_URL;  // Read from environment variable
+
+    axios.get(`${apiUrl}/models`)
       .then(res => {
         console.log('Models data:', res.data);
         const updatedModels = res.data.map(model => ({
           ...model,
-          url: `http://localhost:5000/uploads/${model.filename}`, // Construct the URL here
+          url: `${apiUrl}/uploads/${model.filename}`,
         }));
         setModels(updatedModels);
       })
