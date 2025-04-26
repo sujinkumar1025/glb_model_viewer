@@ -4,7 +4,7 @@ const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
 const Model = require('../src/models/Model.cjs'); // Adjust path if needed
-require('dotenv').config();
+// require('dotenv').config();
 
 const app = express();
 
