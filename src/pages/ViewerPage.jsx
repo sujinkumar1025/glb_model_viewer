@@ -7,7 +7,7 @@ export default function ViewerPage() {
   const [selectedUrl, setSelectedUrl] = useState(null);
 
   useEffect(() => {
-    const apiUrl = process.env.REACT_APP_API_URL;  // Read from environment variable
+    const apiUrl = process.env.VITE_API_URL;  // Read from environment variable
 
     axios.get(`${apiUrl}/models`)
       .then(res => {
