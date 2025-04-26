@@ -18,7 +18,7 @@ export default function UploadPage() {
   //   const apiUrl = process.env.NODE_ENV === 'production'
   // ? 'https://glb-model-viewer-1.onrender.com/models'  // Replace with the actual deployed backend URL
   // : 'http://localhost:5000/models';  // For local development
-  const apiUrl = process.env.VITE_API_URL;
+  const apiUrl = process.env.VITE_API_URL || 'http://localhost:5000';  // Default to localhost for local dev
 
     try {
       await axios.post(`${apiUrl}/models`, formData, {

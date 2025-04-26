@@ -7,7 +7,7 @@ export default function ViewerPage() {
   const [selectedUrl, setSelectedUrl] = useState(null);
 
   useEffect(() => {
-    const apiUrl = process.env.VITE_API_URL;  // Read from environment variable
+    const apiUrl = process.env.VITE_API_URL || 'http://localhost:5000';  // Default to localhost for local dev
 
     axios.get(`${apiUrl}/models`)
       .then(res => {
