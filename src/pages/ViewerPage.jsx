@@ -18,8 +18,8 @@ export default function ViewerPage() {
         }));
         setModels(updatedModels);
       })
-      .catch(err => console.error(err));
-  }, []);
+      .catch(err => console.error('Error fetching models:', err));
+    }, []);
 
   return (
     <div className='model_viewer'>
