@@ -67,7 +67,7 @@ app.post('/models', upload.single('model'), (req, res) => {
       res.status(500).json({ error: err.message });
     });
 });
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 5000;
 
 // Start server
 // const PORT = 5000;
